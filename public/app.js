@@ -49,24 +49,25 @@ async function getCoords(){
 // get foursquare businesses
 async function getFoursquare(business) {
 	
-let clientId = 'UYR55FVRBH5JQXIGPA0N0KJLOTZFKWBJ2TLWT4CZK5ZHIBIL'
-	let clientSecret = 'XWFPKGLXI11JS2E0QSWK3IGL3IFQDXIBPJ3RRIP2JX4JWHXS'
-	let limit = 5;
-	let lat = myMap.coordinates[0]
-	let lon = myMap.coordinates[1]
+// let clientId = 'UYR55FVRBH5JQXIGPA0N0KJLOTZFKWBJ2TLWT4CZK5ZHIBIL'
+// 	let clientSecret = 'XWFPKGLXI11JS2E0QSWK3IGL3IFQDXIBPJ3RRIP2JX4JWHXS'
+// 	let limit = 5;
+// 	let lat = myMap.coordinates[0]
+// 	let lon = myMap.coordinates[1]
 	let response = await fetch(
-			`https://api.foursquare.com/v3/venues/explore?client_id=${clientId}&client_secret=${clientSecret}&v=20211120&limit=${limit}&ll=${lat},${lon}&query=${business}`, {
-				method: "GET",
-				headers: {
-					"Accept": "application/json", 
-					"Authorization": "fsq3Vd2JfFmY19qyP0gwynoECUz2j6QLPPWPj872evzLDXo="
-				},
-				body: JSON.stringify()
-			}
-		);
+        `https://api.foursquare.com/v3/address/fsq3bPk1jCv7Dugsdr5zTwYBngDHEgaWPAtt8jNxN8cYQzQ=`, {
+            method: "GET",
+            mode: "no-cors",
+            headers: {
+                "Accept": "application/json", 
+                "Authorization": "fsq3bPk1jCv7Dugsdr5zTwYBngDHEgaWPAtt8jNxN8cYQzQ="
+            },
+            body: JSON.stringify()
+        }
+    )
 	let data = await response.text()
 	let parsedData = JSON.parse(data)
-	let businesses = parsedData.response.groups[0].items
+	let businesses = parsedData.response.groups[1].items
 	return businesses
 }
 
